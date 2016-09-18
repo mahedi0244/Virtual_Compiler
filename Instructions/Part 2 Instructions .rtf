@@ -1,0 +1,571 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fnil\fcharset0 AppleSymbols;\f2\ftech\fcharset77 Symbol;
+\f3\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf0 \expnd0\expndtw0\kerning0
+This project is a continuation of Part 1. You are to implement a top-down parser for the following BNF of our project language: \
+\
+
+\f1 \uc0\u10216 
+\f0 program
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 var dec list
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 var dec list
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 var dec
+\f1 \uc0\u10217 
+\f0  ";" | 
+\f1 \uc0\u10216 
+\f0 var dec
+\f1 \uc0\u10217 
+\f0  ";" 
+\f1 \uc0\u10216 
+\f0 var dec list
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 var dec
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 type
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 id list
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 type
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 primitive type
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 array type
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 primitive type
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "int" | "float" | "boolean" \
+
+\f1 \uc0\u10216 
+\f0 array type
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 primitive type
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 array index declaration
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 array index declaration
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "[" 
+\f1 \uc0\u10216 
+\f0 range list
+\f1 \uc0\u10217 
+\f0  "]" \
+
+\f1 \uc0\u10216 
+\f0 range list
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 range
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 range
+\f1 \uc0\u10217 
+\f0  "," 
+\f1 \uc0\u10216 
+\f0 range list
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 range
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 int
+\f1 \uc0\u10217 
+\f0  ":" 
+\f1 \uc0\u10216 
+\f0 int
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 id list
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 id
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 id
+\f1 \uc0\u10217 
+\f0  "," 
+\f1 \uc0\u10216 
+\f0 id list
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 assignment
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 block
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 if1
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 if2
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 while
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 print
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 assignment
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 var
+\f1 \uc0\u10217 
+\f0  "=" 
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0 ; \
+
+\f1 \uc0\u10216 
+\f0 var
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 id
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 array var
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 array var
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 id
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 array index
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 array index
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "[" 
+\f1 \uc0\u10216 
+\f0 e list
+\f1 \uc0\u10217 
+\f0  "]" \
+
+\f1 \uc0\u10216 
+\f0 e list
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  "," 
+\f1 \uc0\u10216 
+\f0 e list
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 block
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "\{" 
+\f1 \uc0\u10216 
+\f0 s list
+\f1 \uc0\u10217 
+\f0  "\}" \
+
+\f1 \uc0\u10216 
+\f0 s list
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 s list
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 if1
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "if" 
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 if2
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "if" 
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  "else" 
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 while
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "while" 
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 print
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "print" 
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0 ; \
+
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 var
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 int
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 float
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 floatE
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 floatF
+\f1 \uc0\u10217 
+\f0  | "false" | "true" | "(" 
+\f1 \uc0\u10216 
+\f0 operator application
+\f1 \uc0\u10217 
+\f0  ")" \
+
+\f1 \uc0\u10216 
+\f0 operator application
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 binary operator application
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 unary operator application
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 binary operator application
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 binary operator
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 unary operator application
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 unary operator
+\f1 \uc0\u10217 
+\f0  
+\f1 \uc0\u10216 
+\f0 expr
+\f1 \uc0\u10217 
+\f0  \
+
+\f1 \uc0\u10216 
+\f0 binary operator
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  + | \uc0\u8722  | * | / | "|" | & | < | <= | > | >= | = | != \
+
+\f1 \uc0\u10216 
+\f0 unary operator
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  \uc0\u8722  | ! \
+\
+NOTE: Each occurrence of "else" matches the closest unmatched preceding "if". \
+\
+A lexical analyzer for this language has been implemented in Part 1. In this language, all operator applications have a parenthesized prefix form. \
+\
+Your program will read any text file that contains (what is intended to be) a string in the category 
+\f1 \uc0\u10216 
+\f0 program
+\f1 \uc0\u10217 
+\f0 . It will then construct an 
+\b explicit parse tree
+\b0  and display it in linearly indented form: each syntactic category name labeling a node is displayed on a separate line, prefixed with the integer 
+\i i
+\i0  representing the node's depth and indented by 
+\i i
+\i0  blanks. Low-level category names may be omitted as long as the nested tree structure is shown clearly. This is a basic form of syntax profiler. \
+\
+
+\b Explicit parse trees are to be constructed by class objects using the method described in lecture
+\b0 . Recall the following general strategy. \
+\
+A production rule with a single choice:\
+
+\f1 \uc0\u10216 
+\f0 X
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  \uc0\u945 \
+is represented by a class X having the categories in \uc0\u945  as component fields. For example,
+\f3\fs26 \
+class Program\
+\{\
+	VarDecList \'a0 varDecList;\
+	Statement \'a0 statement;	\
+\}\
+
+\f0\fs32 A production rule with alternatives: \
+\
+\'a0\'a0 
+\f1 \uc0\u10216 
+\f0 X
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  \uc0\u945 
+\fs26 \sub 1
+\fs32 \nosupersub  | \'b7\'b7\'b7 | \uc0\u945 
+\fs26 \sub n
+\fs32 \nosupersub , \'a0\'a0 n \uc0\u8805  2 \
+\
+is represented by an 
+\i abstract class
+\i0  X and subclasses representing \uc0\u945 
+\fs26 \sub i
+\fs32 \nosupersub . For example, the production rule for 
+\f1 \uc0\u10216 
+\f0 statement
+\f1 \uc0\u10217 
+\f0  is represented by an abstract class 
+\f3\fs26 Statement
+\f0\fs32  and subclasses 
+\f3\fs26 Assignment
+\f0\fs32 , 
+\f3\fs26 Block
+\f0\fs32 , 
+\f3\fs26 If1
+\f0\fs32 , 
+\f3\fs26 If2
+\f0\fs32 , 
+\f3\fs26 While
+\f0\fs32 , and 
+\f3\fs26 Print
+\f0\fs32 . \
+\
+The categories 
+\f1 \uc0\u10216 
+\f0 var dec list
+\f1 \uc0\u10217 
+\f0 , 
+\f1 \uc0\u10216 
+\f0 range list
+\f1 \uc0\u10217 
+\f0 , 
+\f1 \uc0\u10216 
+\f0 id list
+\f1 \uc0\u10217 
+\f0 , 
+\f1 \uc0\u10216 
+\f0 e list
+\f1 \uc0\u10217 
+\f0 , 
+\f1 \uc0\u10216 
+\f0 s list
+\f1 \uc0\u10217 
+\f0  have a linear list structure defined by right-recursive patterns. All these can be represented by the same class schema pattern. For example, 
+\f1 \uc0\u10216 
+\f0 var dec list
+\f1 \uc0\u10217 
+\f0  is represented by an abstract class 
+\f3\fs26 VarDecList
+\f0\fs32  together with two subclasses 
+\f3\fs26 VarDec
+\f0\fs32  (or 
+\f3\fs26 SingleVarDec
+\f0\fs32 ) and 
+\f3\fs26 MultipleVarDec
+\f0\fs32 . The class 
+\f3\fs26 MultipleVarDec
+\f0\fs32  have two components:
+\f3\fs26 \
+class MultipleVarDec extends VarDecList\
+\{\
+	VarDec \'a0 varDec;\
+	VarDecList \'a0 varDecList;\
+\}\
+
+\f0\fs32 Parse trees should be displayed by functions in these classes. \
+\
+An appropriate error message should be issued when the first syntax error is found; in this project there is no need to recover from it and continue parsing. (Real-world compilers do some type of syntax-error recovery and attempt to find more syntax errors.) }

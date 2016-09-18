@@ -1,0 +1,341 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fnil\fcharset0 AppleSymbols;\f2\ftech\fcharset77 Symbol;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww21220\viewh11360\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf0 \expnd0\expndtw0\kerning0
+Consider the following EBNF defining 27 token categories 
+\f1 \uc0\u10216 
+\f0 id
+\f1 \uc0\u10217 
+\f0  through 
+\f1 \uc0\u10216 
+\f0 semicolon
+\f1 \uc0\u10217 
+\f0 : \
+\
+
+\f1 \uc0\u10216 
+\f0 letter
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  a | b | ... | z | A | B | ... | Z \
+
+\f1 \uc0\u10216 
+\f0 digit
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  0 | 1 | ... | 9 \
+
+\f1 \uc0\u10216 
+\f0 id
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  
+\f1 \uc0\u10216 
+\f0 letter
+\f1 \uc0\u10217 
+\f0  \{
+\f1 \uc0\u10216 
+\f0 letter
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 digit
+\f1 \uc0\u10217 
+\f0 \} \
+
+\f1 \uc0\u10216 
+\f0 int
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  [+|\uc0\u8722 ] \{
+\f1 \uc0\u10216 
+\f0 digit
+\f1 \uc0\u10217 
+\f0 \}
+\fs26 \super +
+\fs32 \nosupersub  \
+
+\f1 \uc0\u10216 
+\f0 float
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  [+|\uc0\u8722 ] ( \{
+\f1 \uc0\u10216 
+\f0 digit
+\f1 \uc0\u10217 
+\f0 \}
+\fs26 \super +
+\fs32 \nosupersub  "." \{
+\f1 \uc0\u10216 
+\f0 digit
+\f1 \uc0\u10217 
+\f0 \} \'a0|\'a0 "." \{
+\f1 \uc0\u10216 
+\f0 digit
+\f1 \uc0\u10217 
+\f0 \}
+\fs26 \super +
+\fs32 \nosupersub  ) \
+
+\f1 \uc0\u10216 
+\f0 floatE
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  (
+\f1 \uc0\u10216 
+\f0 int
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 float
+\f1 \uc0\u10217 
+\f0 ) (e|E) [+|\uc0\u8722 ] \{
+\f1 \uc0\u10216 
+\f0 digit
+\f1 \uc0\u10217 
+\f0 \}
+\fs26 \super +
+\fs32 \nosupersub  \
+
+\f1 \uc0\u10216 
+\f0 floatF
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  (
+\f1 \uc0\u10216 
+\f0 int
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 float
+\f1 \uc0\u10217 
+\f0  | 
+\f1 \uc0\u10216 
+\f0 floatE
+\f1 \uc0\u10217 
+\f0 ) ("f" | "F") \
+
+\f1 \uc0\u10216 
+\f0 add
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  + \
+
+\f1 \uc0\u10216 
+\f0 sub
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  \uc0\u8722  \
+
+\f1 \uc0\u10216 
+\f0 mul
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  * \
+
+\f1 \uc0\u10216 
+\f0 div
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  / \
+
+\f1 \uc0\u10216 
+\f0 or
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  | \
+
+\f1 \uc0\u10216 
+\f0 and
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  & \
+
+\f1 \uc0\u10216 
+\f0 inv
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  ! \
+
+\f1 \uc0\u10216 
+\f0 lt
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  < \
+
+\f1 \uc0\u10216 
+\f0 le
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "<=" \
+
+\f1 \uc0\u10216 
+\f0 gt
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  > \
+
+\f1 \uc0\u10216 
+\f0 ge
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  ">=" \
+
+\f1 \uc0\u10216 
+\f0 eq
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  = \
+
+\f1 \uc0\u10216 
+\f0 neq
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  "!=" \
+
+\f1 \uc0\u10216 
+\f0 LParen
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  ( \
+
+\f1 \uc0\u10216 
+\f0 RParen
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  ) \
+
+\f1 \uc0\u10216 
+\f0 LBrace
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  \{ \
+
+\f1 \uc0\u10216 
+\f0 RBrace
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  \} \
+
+\f1 \uc0\u10216 
+\f0 LBracket
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  [ \
+
+\f1 \uc0\u10216 
+\f0 RBracket
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  ] \
+
+\f1 \uc0\u10216 
+\f0 comma
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  , \
+
+\f1 \uc0\u10216 
+\f0 colon
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  : \
+
+\f1 \uc0\u10216 
+\f0 semicolon
+\f1 \uc0\u10217 
+\f0  
+\f2 \uc0\u8594 
+\f0  ; \
+\
+
+\f1 \uc0\u10216 
+\f0 letter
+\f1 \uc0\u10217 
+\f0  and 
+\f1 \uc0\u10216 
+\f0 digit
+\f1 \uc0\u10217 
+\f0  are not token categories by themselves; rather, they are auxiliary categories to assist the definitions of the tokens 
+\f1 \uc0\u10216 
+\f0 id
+\f1 \uc0\u10217 
+\f0 , 
+\f1 \uc0\u10216 
+\f0 int
+\f1 \uc0\u10217 
+\f0 , 
+\f1 \uc0\u10216 
+\f0 float
+\f1 \uc0\u10217 
+\f0 , 
+\f1 \uc0\u10216 
+\f0 floatE
+\f1 \uc0\u10217 
+\f0 . \
+\
+According to the above definitions, the integers and floating-point numbers may be signed with "+" or "\uc0\u8722 ". Moreover, the integer or fractional part, but not both, of a string in 
+\f1 \uc0\u10216 
+\f0 float
+\f1 \uc0\u10217 
+\f0  may be empty. \
+\
+The following is a DFA to accept the 27 token categories. \
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 {{\NeXTGraphic DFAFa15.jpg \width20480 \height15400 \noorient
+}¬}\pard\pardeftab720\partightenfactor0
+\cf0 \
+\
+\
+The objective of this project is to implement a lexical analyzer accepting the 27 token categories 
+\b plus the following keywords, all in lowercase letters only
+\b0 :\
+false, true, int, float, boolean, if, else, while, print\
+These keywords cannot be used as identifiers, but can be parts of identifiers, like "iff" and "delse". In this and the next three projects, we assume that the identifiers and keywords are case-sensitive. The implementation should be based on the above DFA. Your lexical analyzer program should clearly separate the driver and the state-transition function so that the driver will remain invariant and only state-transition functions will change from DFA to DFA. The enumerated or integer type is suggested for representation of states. \
+\
+The following keyword recognition method is adequate for this project.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	1	}\expnd0\expndtw0\kerning0
+Create 9 additional DFA states for the keywords.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	2	}\expnd0\expndtw0\kerning0
+The DFA initially accepts the keywords as identifiers.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	3	}\expnd0\expndtw0\kerning0
+Each time the DFA accepts an identifier, check if it is one of the keywords, and if so, move the DFA to the corresponding state.\
+\pard\pardeftab720\partightenfactor0
+\cf0 The lexical analyzer program is to read an input text file, extract the tokens in it, and write them out one by one on separate lines. Each token should be flagged with its category. The output should be sent to an output text file. Whenever invalid tokens are found, error messages should be printed, and the reading process should continue.}

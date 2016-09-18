@@ -1,0 +1,82 @@
+      push 25
+      pop #0
+      push 10
+      pop #1
+      push -5
+      pop #2
+      push 15
+      push 5
+      push -8
+      push 10
+      push 20
+      push 0
+      push 10
+      push -10
+      push -5
+      push 15
+      storeArrayElem 3,  3
+      push 12
+      push 3
+      push -6
+      push 10
+      push 20
+      push 0
+      push 10
+      push -10
+      push -5
+      push 20
+      storeArrayElem 729,  3
+      push #0
+      push #1
+      sub
+      push #2
+      push 10
+      add
+      push -3
+      push 2
+      mul
+      push 10
+      push 20
+      push 0
+      push 10
+      push -10
+      push -5
+      push 15
+      push 5
+      push -8
+      push 10
+      push 20
+      push 0
+      push 10
+      push -10
+      push -5
+      loadArrayElem 3,  3
+      push 12
+      push 3
+      push -6
+      push 10
+      push 20
+      push 0
+      push 10
+      push -10
+      push -5
+      loadArrayElem 729,  3
+      add
+      storeArrayElem 3,  3
+      push #0
+      push #1
+      sub
+      push #2
+      push 10
+      add
+      push -3
+      push 2
+      mul
+      push 10
+      push 20
+      push 0
+      push 10
+      push -10
+      push -5
+      loadArrayElem 3,  3
+      print 
